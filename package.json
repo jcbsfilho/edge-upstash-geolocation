@@ -15,7 +15,7 @@
     "upstash",
     "redis"
   ],
-  "author": "aziontech",
+  "author": "jcbsfilho",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.2.4",
