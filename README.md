@@ -13,21 +13,21 @@ Before use template, ensure that you have the following prerequisites:
 
 ---
 
-> 1. [Create an Azion account](#1.-Create-an-Azion-account)
-> 2. [Create a Redis database](#2.-Creat-a-Redis-database)
-> 3. [Deploy on Edge](#3.-Deploy-on-Edge)
->    3.1 [Marketplace](#3.1-Marketplace)
->    3.2 [Github Actions](#3.2-Github-Actions)
+> - [Create an Azion account](#Create-an-Azion-account)
+> - [Create a Redis database](#Creat-a-Redis-database)
+> - [Deploy on Edge](#Deploy-on-Edge)
+>   - [Marketplace](#Marketplace)
+>   - [Github Actions](#Github-Actions)
 
 ---
 
-## 1. Create an Azion account
+## Create an Azion account
 
 To create an Azion account, just [visit the sing-up page](https://manager.azion.com/signup/) at [Azion's homepage](https://www.azion.com/en/).
 
 ---
 
-## 2. Create a Redis database
+## Create a Redis database
 
 In order to use the template, you'll have to create a Upstash accpount to use with it. To do so, follow these steps:
 
@@ -50,14 +50,14 @@ OK
 
 ---
 
-## 3. Deploy on Edge
+## Deploy on Edge
 
 To perform the deploy on edge, you have two ways to do:
 
 - By using Marketplace.
 - By using GitHub actions.
 
-### 3.1 Marketplace
+### Marketplace
 
 Build and Application [choose a template](https://manager.azion.com/build-application/build/choose-template)
 
@@ -73,7 +73,7 @@ Enter the information in the settings tab:
 
 ---
 
-## 3.2 Github Actions
+## Github Actions
 
 ### Secrets Github
 
@@ -86,7 +86,7 @@ Create your Azion personal token by visiting the [Personal Token creating page](
 Add the Personal Token to the `secrets`:
 
 ```bash
-    AZION_PERSONAL_TOKEN=<>
+    AZION_PERSONAL_TOKEN=<value>
 ```
 
 Environments for use in the action workflow:
@@ -106,11 +106,11 @@ Environments for use in the action workflow:
 Add the Redis Database access credentials to the `secrets`:
 
 ```bash
-    UPSTASH_REDIS_REST_URL=<>
+    UPSTASH_REDIS_REST_URL=<value>
 ```
 
 ```bash
-    UPSTASH_REDIS_REST_TOKEN=<>
+    UPSTASH_REDIS_REST_TOKEN=<value>
 ```
 
 Environments for use in the action workflow:
