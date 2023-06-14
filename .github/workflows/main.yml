@@ -1,0 +1,59 @@
+name: Main Edge Deploy
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - "main"
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Test
+        run: yarn test
+
+      - name: Build Code
+        run: yarn build
+
+      - name: Create args file
+        # "create the arguments at runtime because of the secrets"
+        run: |
+          cat > ./args.json << EOF
+            {
+              "UPSTASH_REDIS_REST_URL": "${{ secrets.UPSTASH_REDIS_REST_URL }}",
+              "UPSTASH_REDIS_REST_TOKEN": "${{ secrets.UPSTASH_REDIS_REST_TOKEN }}"
+            }
+          EOF
+
+      - name: edge-computing-actions
+        id: azion_edge
+        uses: aziontech/edge-computing-actions@v1.0.0
+        with:
+          applicationName: "edge-upstash-geolocation"
+          azionPersonalToken: ${{ secrets.AZION_PERSONAL_TOKEN }}
+          commitConfig: true
+          functionFilePath: "./worker/function.js"
+          argsFilePath: "./args.json"
+
+      - name: Get the output Azion Edge Deploy
+        run: |
+          echo "Message:= ${{ steps.azion_edge.outputs.message }}"
+          echo "Domain:= ${{ steps.azion_edge.outputs.domainApp }}"
