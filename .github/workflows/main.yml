@@ -47,7 +47,7 @@ jobs:
         id: azion_edge
         uses: jcbsfilho/edge-computing-deploy@v3.0.2
         with:
-          applicationName: "demo-edge-upstash-geolocation"
+          applicationName: "edge-upstash-geolocation"
           azionPersonalToken: ${{ secrets.AZION_PERSONAL_TOKEN }}
           commitConfig: true
           functionFilePath: "worker/function.js"
